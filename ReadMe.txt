@@ -1,4 +1,5 @@
 ВИКОРИСТОВУВАВ: openjdk-23.
+jar-file знаходиться в релізах: https://github.com/OleksandrHolopapa/Cryptographer.Oleksandr.Holopapa/releases/tag/release
 ЯК ПРАЦЮЄ:
 При запуску, в методі main створюється об'єкт класу Runner, та викликається його метод run(String[] argsOfMain).
 Задача метода run() аналізувати кількість вхідних параметрів(команда, шлях до файлу, ключ).
