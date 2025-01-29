@@ -1,32 +1,32 @@
 import java.util.Scanner;
 
-public class CLI {
-    public FileWork getFileWorkWithArgs(){
-        FileWork fileWork = null;
+class CLI {
+    FileWork getFileWorkWithArgs(){
+        FileWork fileWork;
         try(Scanner scanner = new Scanner(System.in)){
             String command = getCommand(scanner);
             String path = getPath(scanner);
             String key = getKey(command, scanner);
             fileWork = new FileWork(command, path, key);
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
         }
         return fileWork;
     }
 
-    private String getCommand(Scanner scanner) throws Exception{
+    private String getCommand(Scanner scanner){
         System.out.println("Оберіть команду:");
         System.out.println("Щоб зашифрувати файл, введіть 1");
         System.out.println("Щоб розшифрувати файл, введіть 2");
         System.out.println("Щоб розшифрувати файл без ключа, введіть 3");
         String command = scanner.nextLine();
-
-        switch (Integer.parseInt(command)){
-            case 1 -> command = "ENCRYPT";
-            case 2 -> command = "DECRYPT";
-            case 3 -> command = "BRUTE_FORCE";
-            default -> throw new Exception("Неправильна команда!");
+        try {
+            switch (Integer.parseInt(command)){
+                case 1 -> command = "ENCRYPT";
+                case 2 -> command = "DECRYPT";
+                case 3 -> command = "BRUTE_FORCE";
+                default -> throw new RuntimeException("Неправильна команда!");
+        }
+    }catch (NumberFormatException e){
+            throw new RuntimeException("Неправильна команда!");
         }
         return command;
     }

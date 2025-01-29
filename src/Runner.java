@@ -1,22 +1,28 @@
-public class Runner {
-    public void run(String[] args){
+import java.io.IOException;
+
+class Runner {
+    void run(String[] argsOfMain){
         try {
-            FileWork fileWork = switch (args.length) {
+            FileWork fileWork = switch (argsOfMain.length) {
                 case 0 -> {
                     CLI client = new CLI();
                     yield client.getFileWorkWithArgs();
                 }
-                case 3 -> new FileWork(args[0], args[1], args[2]);
                 case 2 -> {
-                    if(args[0].equals("BRUTE_FORCE")) { yield new FileWork(args[0], args[1], "");
-                    }else  throw new Exception("Перевірте кількість вхідних параметрів");
+                    if(argsOfMain[0].equals("BRUTE_FORCE")) { yield new FileWork(argsOfMain[0], argsOfMain[1], "");
+                    }else  throw new RuntimeException("Перевірте кількість вхідних параметрів");
                 }
-                default -> throw new Exception("Перевірте кількість вхідних параметрів");
+                case 3 -> new FileWork(argsOfMain[0], argsOfMain[1], argsOfMain[2]);
+                default -> throw new RuntimeException("Перевірте кількість вхідних параметрів");
             };
 
             fileWork.readAndWrite();
 
-        }catch (Exception e){
+        }catch (NumberFormatException e){
+            System.out.println("Перевірте правильність введеного ключа. Ключ повинен бути цілим числом");
+        }catch (IOException e){
+            System.out.println("Помилка читання/запису файлу. Перевірте правильність шляху до файлу");
+        }catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
 
