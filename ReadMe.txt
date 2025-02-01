@@ -1,5 +1,5 @@
 ВИКОРИСТОВУВАВ: openjdk-23.
-jar-file знаходиться в релізах: https://github.com/OleksandrHolopapa/Cryptographer.Oleksandr.Holopapa/releases/tag/release
+jar-file знаходиться в релізах: https://github.com/OleksandrHolopapa/Cryptographer.Oleksandr.Holopapa/releases/tag/Cryptographer
 ЯК ПРАЦЮЄ:
 
 Запустити програму можна як з вхідними параметрами, так і без них. При запуску, в методі main створюється об'єкт класу
