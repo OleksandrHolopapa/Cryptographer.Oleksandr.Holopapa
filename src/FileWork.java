@@ -7,6 +7,9 @@ class FileWork {
     private final Path sourceFilePath;
     private Path destinationFilePath;
     private final String key;
+    private String initialText;
+    private String finalText;
+    private int bruteForceKey;
 
     FileWork(String command, String path, String key) {
         this.command = command;
@@ -15,10 +18,22 @@ class FileWork {
         this.key = key;
     }
 
+    String getInitialText() {
+        return initialText;
+    }
+
+    String getFinalText() {
+        return finalText;
+    }
+
+    int getBruteForceKey() {
+        return bruteForceKey;
+    }
+
     void readAndWrite() throws IOException {
             AlgorithmOfCaesar algorithm = new AlgorithmOfCaesar();
-            String initialText = Files.readString(sourceFilePath);
-            String finalText = switch (command) {
+            initialText = Files.readString(sourceFilePath);
+            finalText = switch (command) {
                 case "ENCRYPT" -> algorithm.coding(initialText, Integer.parseInt(key));
                 case "DECRYPT" -> algorithm.decoding(initialText, Integer.parseInt(key));
                 case "BRUTE_FORCE" -> returnFinalTextWithBruteForce(initialText, algorithm);
@@ -45,12 +60,12 @@ class FileWork {
     }
 
     private int getKey(String text, AlgorithmOfCaesar algorithm){
-        int key = 0;
+        bruteForceKey = 0;
         for (int i = 1; i < AlgorithmOfCaesar.LENGTH_OF_ALPHABET; i++) {
             String newText = algorithm.decoding(text, i);
-            if(newText.contains(", ")&&newText.contains(". ")) {key = i; break;}
+            if(newText.contains(", ")&&newText.contains(". ")) {bruteForceKey = i; break;}
         }
-        return key;
+        return bruteForceKey;
     }
 
 }

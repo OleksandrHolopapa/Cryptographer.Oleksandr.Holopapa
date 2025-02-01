@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Runner runner = new Runner();
-        runner.run(args);
+        CLI client = args.length!=0? new CLI(args): new CLI();
+        client.setVisible(true);
     }
 }
