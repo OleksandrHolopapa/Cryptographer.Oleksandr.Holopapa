@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class CLI extends JFrame {
     private final JPanel panel;
-    private final JLabel commandLabel, sourceFilePathLabel, keyValueLabel, textOfInitialFileLabel, textOfFinalFileLabel;
+    private final JLabel commandLabel, initialFilePathLabel, keyValueLabel, textOfInitialFileLabel, textOfFinalFileLabel;
     private final JTextField initialFilePathTextField, keyValueTextField;
     private final JTextArea textOfInitialFileTextArea, textOfFinalFileTextArea;
-    private final JButton chooseFilePathButton, executeCommandButton, clearAllTextAreasButton;
+    private final JButton chooseInitialFilePathButton, executeCommandButton, clearAllTextAreasButton;
     private final JScrollPane textOfInitialFileScrollPane, textOfFinalFileScrollPane;
     private final JComboBox<String> commandsComboBox;
     private final String[] arrayOfCommands = {"ENCRYPT","DECRYPT","BRUTE FORCE"};
@@ -33,15 +33,15 @@ public class CLI extends JFrame {
         commandsComboBox.setBounds(300, 20, 470, 20);
         panel.add(commandsComboBox);
 
-        sourceFilePathLabel = new JLabel("Введіть абсолютний шлях до файлу:", SwingConstants.RIGHT);
-        sourceFilePathLabel.setBounds(30,45,265,20);
-        panel.add(sourceFilePathLabel);
+        initialFilePathLabel = new JLabel("Введіть абсолютний шлях до файлу:", SwingConstants.RIGHT);
+        initialFilePathLabel.setBounds(30,45,265,20);
+        panel.add(initialFilePathLabel);
         initialFilePathTextField = new JTextField();
         initialFilePathTextField.setBounds(300, 45, 430, 20);
         panel.add(initialFilePathTextField);
-        chooseFilePathButton = new JButton("...");
-        chooseFilePathButton.setBounds(730, 45, 40, 20);
-        panel.add(chooseFilePathButton);
+        chooseInitialFilePathButton = new JButton("...");
+        chooseInitialFilePathButton.setBounds(730, 45, 40, 20);
+        panel.add(chooseInitialFilePathButton);
 
         keyValueLabel = new JLabel("Введіть ключ (ціле число):", SwingConstants.RIGHT);
         keyValueLabel.setBounds(30,70,265,20);
@@ -76,7 +76,7 @@ public class CLI extends JFrame {
 
         commandsComboBox.addActionListener(_ -> executeCommandButton.setText(Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString()));
 
-        chooseFilePathButton.addActionListener(_ -> inputFilePathSelection());
+        chooseInitialFilePathButton.addActionListener(_ -> inputFilePathSelection());
 
         executeCommandButton.addActionListener(_ -> executeCommand());
 
@@ -105,7 +105,7 @@ public class CLI extends JFrame {
         textOfFinalFileTextArea.setText("");
     }
 
-    boolean checkingIsCommandCorrect(String commandReceived){
+    private boolean checkingIsCommandCorrect(String commandReceived){
         boolean commandIsCorrect = false;
         if(commandReceived.equals("BRUTE_FORCE")) commandReceived = "BRUTE FORCE";
         for (String command : arrayOfCommands) {
