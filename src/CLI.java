@@ -117,7 +117,7 @@ public class CLI extends JFrame {
         return commandIsCorrect;
     }
 
-    int getCommandIndex(String commandReceived){
+    private int getCommandIndex(String commandReceived){
         return switch (commandReceived){
             case "DECRYPT" -> 1;
             case "BRUTE_FORCE" -> 2;
