@@ -31,15 +31,10 @@ class FileWork {
     }
 
     void readAndWrite() throws IOException {
-            AlgorithmOfCaesar algorithm = new AlgorithmOfCaesar();
-            initialText = Files.readString(sourceFilePath);
-            finalText = switch (command) {
-                case "ENCRYPT" -> algorithm.coding(initialText, Integer.parseInt(key));
-                case "DECRYPT" -> algorithm.decoding(initialText, Integer.parseInt(key));
-                case "BRUTE_FORCE" -> returnFinalTextWithBruteForce(initialText, algorithm);
-                default -> throw new RuntimeException("Невідома команда");
-            };
-            Files.writeString(destinationFilePath, finalText);
+        AlgorithmOfCaesar algorithm = new AlgorithmOfCaesar();
+        initialText = Files.readString(sourceFilePath);
+        initializeFinalText(command, algorithm);
+        Files.writeString(destinationFilePath, finalText);
     }
 
     private String returnFinalTextWithBruteForce(String initialText, AlgorithmOfCaesar algorithm){
@@ -66,6 +61,13 @@ class FileWork {
             if(newText.contains(", ")&&newText.contains(". ")) {bruteForceKey = i; break;}
         }
         return bruteForceKey;
+    }
+    private void initializeFinalText(String command, AlgorithmOfCaesar algorithm) {
+        switch (command) {
+            case "ENCRYPT" -> finalText = algorithm.coding(initialText, Integer.parseInt(key));
+            case "DECRYPT" -> finalText = algorithm.decoding(initialText, Integer.parseInt(key));
+            case "BRUTE_FORCE" -> finalText = returnFinalTextWithBruteForce(initialText, algorithm);
+        }
     }
 
 }

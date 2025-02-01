@@ -78,16 +78,7 @@ public class CLI extends JFrame {
 
         chooseFilePathButton.addActionListener(_ -> inputFilePathSelection());
 
-        executeCommandButton.addActionListener(_ -> {
-            clearAllTextAreas();
-            String[] args = createArrayOfInitialArgs();
-            Runner runner = new Runner();
-            runner.run(args, this);
-            try {
-                textOfInitialFileTextArea.append(runner.getFileWork().getInitialText());
-                textOfFinalFileTextArea.append(runner.getFileWork().getFinalText());
-            }catch (NullPointerException _){}
-        });
+        executeCommandButton.addActionListener(_ -> executeCommand());
 
         clearAllTextAreasButton.addActionListener(_-> clearAllTextAreas());
     }
@@ -132,6 +123,20 @@ public class CLI extends JFrame {
             case "BRUTE_FORCE" -> 2;
             default -> 0;
         };
+    }
+
+    private void executeCommand(){
+        clearAllTextAreas();
+        String[] args = createArrayOfInitialArgs();
+        Runner runner = new Runner();
+        runner.run(args, this);
+        try {
+            textOfInitialFileTextArea.append(runner.getFileWork().getInitialText());
+            textOfFinalFileTextArea.append(runner.getFileWork().getFinalText());
+            if(Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString().equals("BRUTE FORCE")) {
+                keyValueTextField.setText(""+runner.getFileWork().getBruteForceKey());
+            }
+        }catch (NullPointerException _){}
     }
 
 }
