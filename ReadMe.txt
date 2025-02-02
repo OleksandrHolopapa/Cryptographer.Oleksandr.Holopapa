@@ -33,7 +33,8 @@ formFinalFilePath(String pathOfInitialFile, String commandActionOnTheFinalFile),
 2 та 68 будуть однаковими (так само при ключах 100 і 33, -1 і 66, при 0 здвигу не буде, при 67 алфавіт зробить повне
 коло і т. д.). Метод readAndWrite() читає файл в строку, ініціалізує глобальну змінну finalText та записує її в новий файл.
 
-Команда BRUTE_FORCE: основну роботу робить метод initializeKeyAndFinalFilePathAndFinalTextForBruteForce(String initialText, AlgorithmOfCaesar algorithm).
+Команда BRUTE_FORCE: основну роботу робить метод
+findKeyAndInitializeKeyAndFinalFilePathAndFinalTextForBruteForce(String initialText, AlgorithmOfCaesar algorithm).
 Він шукає збіг символів: [','+' '] і ['.'+' ']. Знаходить ключ та відразу ініціалізує поля key, finalText та finalFilePath.
 Така логіка, бо при пошуку ключа, ми вже декодуємо текст. Отримали ключ, маємо текст, записали його в глобальну змінну.
 Я використовую англійський та український алфавіти. При різній їхній довжині були проблеми з пошуком ключа, що перевищував
@@ -41,7 +42,8 @@ formFinalFilePath(String pathOfInitialFile, String commandActionOnTheFinalFile),
 алфавіт пройде три повні оберти, і символи здвинуться на 1. Англійський алфавіт зробить 3 повні оберти, і символи здвинуться
 на 22. Уже отримали різні ключі. Тому я доповнив ці алфавіти символами, довжина кожного 67 символів.
 Режим BRUTE_FORCE спрацьовував як при додатних, так і при від'ємних ключах(20, 100, -200). Щоб BRUTE_FORCE спрацював,
-потрібно, щоб в тексті було декілька речень, і хоча б одне містило кому.
+потрібно, щоб в тексті було декілька речень, і хоча б одне містило кому. Якщо ключ не вдалося підібрати, отримаємо про це
+повідомлення.
 
 Клас AlgorithmOfCaesar шифрує і дешифрує строки посимвольно за допомогою методу
 char codingSymbolOfInitialTex(char symbolOfInitialTex, int key, String usedAlphabet).

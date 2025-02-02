@@ -7,16 +7,18 @@ class Runner {
         return fileWork;
     }
 
-    void run(String[] argsOfMain, CLI frame){
+    void run(String[] argsOfMain, CLI frame) {
         try {
-           fileWork = new FileWork(argsOfMain[0], argsOfMain[1], argsOfMain[2]);
-           fileWork.readAndWrite();
-            if(argsOfMain[0].equals("BRUTE_FORCE")) frame.showMassage("Ключ, отриманий за допомогою BRUTE FORCE = "+fileWork.getKey());
-        }catch (NumberFormatException e){
+            fileWork = new FileWork(argsOfMain[0], argsOfMain[1], argsOfMain[2]);
+            fileWork.readAndWrite();
+            if (argsOfMain[0].equals("BRUTE_FORCE")) {
+                frame.showMassage("Ключ, отриманий за допомогою BRUTE FORCE = " + fileWork.getKey());
+            }
+        } catch (NumberFormatException e) {
             frame.showMassage("Перевірте правильність введеного ключа. Ключ повинен бути цілим числом");
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             frame.showMassage(e.getMessage());
-        }catch (IOException e){
+        } catch (IOException e) {
             frame.showMassage("Помилка читання/запису файлу. Перевірте правильність шляху до файлу");
         }
 

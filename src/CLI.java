@@ -10,31 +10,32 @@ public class CLI extends JFrame {
     private final JButton chooseInitialFilePathButton, executeCommandButton, clearAllTextAreasButton;
     private final JScrollPane textOfInitialFileScrollPane, textOfFinalFileScrollPane;
     private final JComboBox<String> commandsComboBox;
-    private final String[] arrayOfCommands = {"ENCRYPT","DECRYPT","BRUTE FORCE"};
-    CLI(String[] args){
+    private final String[] arrayOfCommands = {"ENCRYPT", "DECRYPT", "BRUTE FORCE"};
+
+    CLI(String[] args) {
         this();
-        if(checkingIsCommandCorrect(args[0])) commandsComboBox.setSelectedIndex(getCommandIndex(args[0]));
-        if(args.length>1) initialFilePathTextField.setText(args[1]);
-        if(args.length>2) keyValueTextField.setText(args[2]);
+        if (checkingIsCommandCorrect(args[0])) commandsComboBox.setSelectedIndex(getCommandIndex(args[0]));
+        if (args.length > 1) initialFilePathTextField.setText(args[1]);
+        if (args.length > 2) keyValueTextField.setText(args[2]);
     }
 
     CLI() {
         super.setTitle("Cryptographer");
-        super.setBounds(200,100,800,900);
+        super.setBounds(200, 100, 800, 900);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel();
         panel.setLayout(null);
         super.add(panel);
 
         commandLabel = new JLabel("Оберіть команду зі списку:", SwingConstants.RIGHT);
-        commandLabel.setBounds(30,20,265,20);
+        commandLabel.setBounds(30, 20, 265, 20);
         panel.add(commandLabel);
         commandsComboBox = new JComboBox<>(arrayOfCommands);
         commandsComboBox.setBounds(300, 20, 470, 20);
         panel.add(commandsComboBox);
 
         initialFilePathLabel = new JLabel("Введіть абсолютний шлях до файлу:", SwingConstants.RIGHT);
-        initialFilePathLabel.setBounds(30,45,265,20);
+        initialFilePathLabel.setBounds(30, 45, 265, 20);
         panel.add(initialFilePathLabel);
         initialFilePathTextField = new JTextField();
         initialFilePathTextField.setBounds(300, 45, 430, 20);
@@ -44,17 +45,17 @@ public class CLI extends JFrame {
         panel.add(chooseInitialFilePathButton);
 
         keyValueLabel = new JLabel("Введіть ключ (ціле число):", SwingConstants.RIGHT);
-        keyValueLabel.setBounds(30,70,265,20);
+        keyValueLabel.setBounds(30, 70, 265, 20);
         panel.add(keyValueLabel);
         keyValueTextField = new JTextField();
         keyValueTextField.setBounds(300, 70, 470, 20);
         panel.add(keyValueTextField);
 
         textOfInitialFileLabel = new JLabel("Завантажений з файлу текст", SwingConstants.CENTER);
-        textOfInitialFileLabel.setBounds(30,95,365,20);
+        textOfInitialFileLabel.setBounds(30, 95, 365, 20);
         panel.add(textOfInitialFileLabel);
         textOfFinalFileLabel = new JLabel("Змінений за допомогою команди текст", SwingConstants.CENTER);
-        textOfFinalFileLabel.setBounds(405,95,365,20);
+        textOfFinalFileLabel.setBounds(405, 95, 365, 20);
         panel.add(textOfFinalFileLabel);
 
         textOfInitialFileTextArea = new JTextArea();
@@ -80,36 +81,38 @@ public class CLI extends JFrame {
 
         executeCommandButton.addActionListener(_ -> executeCommand());
 
-        clearAllTextAreasButton.addActionListener(_-> clearAllTextAreas());
+        clearAllTextAreasButton.addActionListener(_ -> clearAllTextAreas());
     }
-    private void inputFilePathSelection(){
+
+    private void inputFilePathSelection() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(panel);
         File selectedFile = fileChooser.getSelectedFile();
         initialFilePathTextField.setText(selectedFile.getAbsolutePath());
     }
-    void showMassage(String massage){
+
+    void showMassage(String massage) {
         JOptionPane.showMessageDialog(panel, massage);
     }
 
-    private String[] createArrayOfInitialArgs(){
+    private String[] createArrayOfInitialArgs() {
         String command = Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString();
-        command = command.equals("BRUTE FORCE")? "BRUTE_FORCE" : command;
+        command = command.equals("BRUTE FORCE") ? "BRUTE_FORCE" : command;
         String pathOfInitialFile = initialFilePathTextField.getText();
         String key = keyValueTextField.getText();
         return new String[]{command, pathOfInitialFile, key};
     }
 
-    private void clearAllTextAreas(){
+    private void clearAllTextAreas() {
         textOfInitialFileTextArea.setText("");
         textOfFinalFileTextArea.setText("");
     }
 
-    private boolean checkingIsCommandCorrect(String commandReceived){
+    private boolean checkingIsCommandCorrect(String commandReceived) {
         boolean commandIsCorrect = false;
-        if(commandReceived.equals("BRUTE_FORCE")) commandReceived = "BRUTE FORCE";
+        if (commandReceived.equals("BRUTE_FORCE")) commandReceived = "BRUTE FORCE";
         for (String command : arrayOfCommands) {
-            if(command.equals(commandReceived)) {
+            if (command.equals(commandReceived)) {
                 commandIsCorrect = true;
                 break;
             }
@@ -117,15 +120,15 @@ public class CLI extends JFrame {
         return commandIsCorrect;
     }
 
-    private int getCommandIndex(String commandReceived){
-        return switch (commandReceived){
+    private int getCommandIndex(String commandReceived) {
+        return switch (commandReceived) {
             case "DECRYPT" -> 1;
             case "BRUTE_FORCE" -> 2;
             default -> 0;
         };
     }
 
-    private void executeCommand(){
+    private void executeCommand() {
         clearAllTextAreas();
         String[] args = createArrayOfInitialArgs();
         Runner runner = new Runner();
@@ -133,10 +136,11 @@ public class CLI extends JFrame {
         try {
             textOfInitialFileTextArea.append(runner.getFileWork().getInitialText());
             textOfFinalFileTextArea.append(runner.getFileWork().getFinalText());
-            if(Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString().equals("BRUTE FORCE")) {
+            if (Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString().equals("BRUTE FORCE")) {
                 keyValueTextField.setText(runner.getFileWork().getKey());
             }
-        }catch (NullPointerException _){}
+        } catch (NullPointerException _) {
+        }
     }
 
 }
