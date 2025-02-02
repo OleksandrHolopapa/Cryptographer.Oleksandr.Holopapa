@@ -14,7 +14,7 @@ public class CLI extends JFrame {
 
     CLI(String[] args) {
         this();
-        if (checkingIsCommandCorrect(args[0])) commandsComboBox.setSelectedIndex(getCommandIndex(args[0]));
+        if (isCommandCorrect(args[0])) commandsComboBox.setSelectedIndex(getCommandIndex(args[0]));
         if (args.length > 1) initialFilePathTextField.setText(args[1]);
         if (args.length > 2) keyValueTextField.setText(args[2]);
     }
@@ -108,7 +108,7 @@ public class CLI extends JFrame {
         textOfFinalFileTextArea.setText("");
     }
 
-    private boolean checkingIsCommandCorrect(String commandReceived) {
+    private boolean isCommandCorrect(String commandReceived) {
         boolean commandIsCorrect = false;
         if (commandReceived.equals("BRUTE_FORCE")) commandReceived = "BRUTE FORCE";
         for (String command : arrayOfCommands) {

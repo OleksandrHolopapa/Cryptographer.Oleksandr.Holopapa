@@ -31,7 +31,7 @@ class FileWork {
     void readAndWrite() throws IOException {
         AlgorithmOfCaesar algorithm = new AlgorithmOfCaesar();
         initialText = Files.readString(initialFilePath);
-        initializeFinalTextAndFinalFilePath(command, algorithm);
+        setFinalTextAndFinalFilePath(command, algorithm);
         Files.writeString(finalFilePath, finalText);
     }
 
@@ -52,7 +52,7 @@ class FileWork {
                 + initialFilePath.getFileName(), command + "D, KEY = " + key));
     }
 
-    private void findKeyAndInitializeKeyAndFinalFilePathAndFinalTextForBruteForce(String initialText, AlgorithmOfCaesar algorithm) {
+    private void bruteForce(String initialText, AlgorithmOfCaesar algorithm) {
         key = "0";
         for (int i = 1; i < AlgorithmOfCaesar.LENGTH_OF_ALPHABET; i++) {
             String possibleFinalText = algorithm.decrypt(initialText, i);
@@ -67,7 +67,7 @@ class FileWork {
 
     }
 
-    private void initializeFinalTextAndFinalFilePath(String command, AlgorithmOfCaesar algorithm) {
+    private void setFinalTextAndFinalFilePath(String command, AlgorithmOfCaesar algorithm) {
         switch (command) {
             case "ENCRYPT" -> {
                 finalFilePath = Path.of(formFinalFilePath(initialFilePath.toString(), command + "ED"));
@@ -77,7 +77,7 @@ class FileWork {
                 finalFilePath = Path.of(formFinalFilePath(initialFilePath.toString(), command + "ED"));
                 finalText = algorithm.decrypt(initialText, Integer.parseInt(key));
             }
-            case "BRUTE_FORCE" -> findKeyAndInitializeKeyAndFinalFilePathAndFinalTextForBruteForce(initialText, algorithm);
+            case "BRUTE_FORCE" -> bruteForce(initialText, algorithm);
         }
     }
 
