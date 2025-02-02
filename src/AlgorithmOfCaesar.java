@@ -19,7 +19,7 @@ class AlgorithmOfCaesar {
         return ENGLISH_ALPHABET.indexOf(symbolOfInitialTex)!=-1;
     }
 
-    private String checkAlphabetAndFormNewText(String initialText, int key){
+    private String checkAlphabetAndFormFinalText(String initialText, int key){
         StringBuilder finalText = new StringBuilder(initialText.length());
         char symbolOfInitialText;
         for (int i = 0; i < initialText.length(); i++) {
@@ -33,12 +33,12 @@ class AlgorithmOfCaesar {
         return finalText.toString();
     }
 
-    String coding(String initialTex, int key){
-        return checkAlphabetAndFormNewText(initialTex, key);
+    String encrypt(String initialTex, int key){
+        return checkAlphabetAndFormFinalText(initialTex, key);
     }
 
-    String decoding(String initialTex, int key){
-        return checkAlphabetAndFormNewText(initialTex, -key);
+    String decrypt(String initialTex, int key){
+        return checkAlphabetAndFormFinalText(initialTex, -key);
     }
 
 }

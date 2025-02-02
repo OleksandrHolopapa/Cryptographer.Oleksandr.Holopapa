@@ -11,7 +11,7 @@ class Runner {
         try {
            fileWork = new FileWork(argsOfMain[0], argsOfMain[1], argsOfMain[2]);
            fileWork.readAndWrite();
-            if(argsOfMain[0].equals("BRUTE_FORCE")) frame.showMassage("Ключ, отриманий за допомогою BRUTE FORCE = "+fileWork.getBruteForceKey());
+            if(argsOfMain[0].equals("BRUTE_FORCE")) frame.showMassage("Ключ, отриманий за допомогою BRUTE FORCE = "+fileWork.getKey());
         }catch (NumberFormatException e){
             frame.showMassage("Перевірте правильність введеного ключа. Ключ повинен бути цілим числом");
         }catch (RuntimeException e){

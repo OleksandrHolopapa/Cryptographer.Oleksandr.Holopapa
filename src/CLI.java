@@ -134,7 +134,7 @@ public class CLI extends JFrame {
             textOfInitialFileTextArea.append(runner.getFileWork().getInitialText());
             textOfFinalFileTextArea.append(runner.getFileWork().getFinalText());
             if(Objects.requireNonNull(commandsComboBox.getSelectedItem()).toString().equals("BRUTE FORCE")) {
-                keyValueTextField.setText(""+runner.getFileWork().getBruteForceKey());
+                keyValueTextField.setText(runner.getFileWork().getKey());
             }
         }catch (NullPointerException _){}
     }
