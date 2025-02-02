@@ -33,8 +33,7 @@ formFinalFilePath(String pathOfInitialFile, String commandActionOnTheFinalFile),
 2 та 68 будуть однаковими (так само при ключах 100 і 33, -1 і 66, при 0 здвигу не буде, при 67 алфавіт зробить повне
 коло і т. д.). Метод readAndWrite() читає файл в строку, ініціалізує глобальну змінну finalText та записує її в новий файл.
 
-Команда BRUTE_FORCE: основну роботу робить метод
-findKeyAndInitializeKeyAndFinalFilePathAndFinalTextForBruteForce(String initialText, AlgorithmOfCaesar algorithm).
+Команда BRUTE_FORCE: основну роботу робить метод bruteForce(String initialText, AlgorithmOfCaesar algorithm).
 Він шукає збіг символів: [','+' '] і ['.'+' ']. Знаходить ключ та відразу ініціалізує поля key, finalText та finalFilePath.
 Така логіка, бо при пошуку ключа, ми вже декодуємо текст. Отримали ключ, маємо текст, записали його в глобальну змінну.
 Я використовую англійський та український алфавіти. При різній їхній довжині були проблеми з пошуком ключа, що перевищував
