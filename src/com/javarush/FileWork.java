@@ -1,3 +1,5 @@
+package com.javarush;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,7 +61,6 @@ class FileWork {
             }
         }
         if (key.equals("0")) throw new RuntimeException("Не вдалося підібрати ключ");
-
     }
 
     private void setFinalTextAndFinalFilePath(AlgorithmOfCaesar algorithm) {
@@ -75,6 +76,4 @@ class FileWork {
             case "BRUTE_FORCE" -> bruteForce(algorithm);
         }
     }
-
 }
-

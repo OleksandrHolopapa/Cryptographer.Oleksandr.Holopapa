@@ -1,5 +1,6 @@
-class AlgorithmOfCaesar {
+package com.javarush;
 
+class AlgorithmOfCaesar {
     private final static String ENGLISH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,«»\"\\:!?<>(){}";
     private final static String UKRAINIAN_ALPHABET = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя ";
     final static int LENGTH_OF_ALPHABET = ENGLISH_ALPHABET.length();
@@ -42,5 +43,4 @@ class AlgorithmOfCaesar {
     String decrypt(String initialTex, int key) {
         return FormFinalText(initialTex, -key);
     }
-
 }

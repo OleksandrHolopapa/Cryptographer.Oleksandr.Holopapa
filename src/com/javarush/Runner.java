@@ -1,3 +1,5 @@
+package com.javarush;
+
 import java.io.IOException;
 
 class Runner {
@@ -21,6 +23,5 @@ class Runner {
         } catch (IOException e) {
             frame.showMassage("Помилка читання/запису файлу. Перевірте правильність шляху до файлу");
         }
-
     }
 }
