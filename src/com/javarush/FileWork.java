@@ -60,7 +60,7 @@ class FileWork {
                 break;
             }
         }
-        if (key.equals("0")) throw new RuntimeException("Не вдалося підібрати ключ");
+        if (key.equals("0")) throw new RuntimeException("Ключ рівний 0. Кодування не відбулося");
     }
 
     private void setFinalTextAndFinalFilePath(AlgorithmOfCaesar algorithm) {

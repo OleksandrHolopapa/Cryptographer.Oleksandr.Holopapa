@@ -21,7 +21,7 @@ class CLI extends JFrame {
 
     CLI() {
         super.setTitle("Cryptographer");
-        super.setBounds(200, 100, 800, 900);
+        super.setBounds(200, 100, 800, 700);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel();
         panel.setLayout(null);
@@ -110,10 +110,10 @@ class CLI extends JFrame {
         keyValueTextField.setBounds(300, 70, 470, 20);
         textOfInitialFileLabel.setBounds(30, 95, 365, 20);
         textOfFinalFileLabel.setBounds(405, 95, 365, 20);
-        textOfInitialFileScrollPane.setBounds(30, 120, 365, 700);
-        textOfFinalFileScrollPane.setBounds(405, 120, 365, 700);
-        executeCommandButton.setBounds(470, 835, 140, 20);
-        clearAllTextAreasButton.setBounds(630, 835, 140, 20);
+        textOfInitialFileScrollPane.setBounds(30, 120, 365, 500);
+        textOfFinalFileScrollPane.setBounds(405, 120, 365, 500);
+        executeCommandButton.setBounds(470, 635, 140, 20);
+        clearAllTextAreasButton.setBounds(630, 635, 140, 20);
     }
 
     private void addFormElementsToPanel(JPanel panel) {
